@@ -6,6 +6,7 @@ namespace GoFish.Models
 {
     public class GameState
     {
+        public static GameState Game;
         private const int StartingHand = 5;
         private const int TotalCards = 52;
         private int _turn;
@@ -18,12 +19,13 @@ namespace GoFish.Models
                 return _turn;
             }
         }
-        public List<int> Deck { get; }
+        public List<int> Deck { get; } = new List<int>();
         public List<Hand> Hands { get; } = new List<Hand>();
         public List<int> PairCount { get; } = new List<int>();
 
         public GameState()
         {
+            Game = this;
             rng = new Random();
             Players = 2;
             _turn = 0;
@@ -42,6 +44,7 @@ namespace GoFish.Models
 
         public GameState(int players)
         {
+            Game = this;
             rng = new Random();
             if (players > 5)
             {
